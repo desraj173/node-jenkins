@@ -4,8 +4,9 @@ FROM node:21
 # Set the working directory
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . .
+# Copy the package & package lock file
+
+COPY package*.json ./
 
 # Copy the entrypoint script
 # COPY docker-entrypoint.sh /usr/local/bin/
@@ -15,6 +16,9 @@ COPY . .
 
 # Install dependencies
 RUN npm install
+
+# Copy the current directory contents into the container at /app
+COPY . .
 
 # Expose the port the app runs on
 EXPOSE 3000
